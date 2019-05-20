@@ -1,0 +1,9 @@
+{
+  "name": "async-sequencer",
+  "version": "1.0.0",
+  "description": "This module helps you easily create sequences that must be executed in sequence through Promise.",
+  "main": "index.js",
+  "type": "index.d.ts",
+  "author": "hmmhmmhm",
+  "license": "MIT"
+}
