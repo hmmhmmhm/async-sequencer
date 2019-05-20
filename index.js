@@ -8,12 +8,13 @@ module.exports = {
             async function Sequencer(module){
 
                 let isSequenceSuccess = true
+                let sequenceResult = undefined
                 try{
                     sequenceNumber++
                     if(typeof(module['default']) != 'undefined'){
-                        await module.default(data)
+                        sequenceResult = await module.default(data)
                     }else{
-                        await module(data)
+                        sequenceResult = await module(data)
                     }
                 }catch(e){
                     isSequenceSuccess = false
@@ -21,6 +22,7 @@ module.exports = {
 
                 if(typeof(callback) == 'function') await callback({
                     sequenceNumber,
+                    sequenceResult,
                     isSequenceSuccess,
                     isEndOfSequence: modules.length == sequenceNumber
                 })

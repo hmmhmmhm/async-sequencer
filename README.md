@@ -35,7 +35,8 @@ Sequencer(
     ({
         sequenceNumber,
         isSequenceSuccess,
-        isEndOfSequence
+        isEndOfSequence,
+        sequenceResult
     })=>{
 
         // Callback Logic

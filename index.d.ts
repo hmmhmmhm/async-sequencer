@@ -5,17 +5,18 @@ declare module 'async-sequencer' {
             modules: ((data) => void)[], 
             callback: (result: {
                 sequenceNumber: number
+                sequenceResult: any
                 isSequenceSuccess: boolean
                 isEndOfSequence: boolean
             }) => void,
             data?) => void
 
         Sequence: (
-            option: {
-                resolve: () => void
-                reject: () => void
+            callback: (option: {
+                resolve: (result?: any) => void
+                reject: (result?: any) => void
                 data
-            }) => void
+            }) => void ) => void
     }
 
     export = main
