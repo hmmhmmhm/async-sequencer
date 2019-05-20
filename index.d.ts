@@ -3,12 +3,12 @@ declare module 'async-sequencer' {
     const main: {
         Sequencer: (
             modules: ((data) => void)[], 
-            callback: {
+            callback: (result: {
                 sequenceNumber: number
                 isSequenceSuccess: boolean
                 isEndOfSequence: boolean
-            },
-            data) => void
+            }) => void,
+            data?) => void
 
         Sequence: (
             option: {
