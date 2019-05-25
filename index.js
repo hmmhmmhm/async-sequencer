@@ -20,16 +20,32 @@ module.exports = {
                     isSequenceSuccess = false
                 }
 
-                if(typeof(callback) == 'function') await callback({
-                    sequenceNumber,
-                    sequenceResult,
-                    isSequenceSuccess,
-                    isEndOfSequence: modules.length == sequenceNumber
-                })
+                if(typeof(callback) == 'function') {
+                    let callbackResult = await callback({
+                        sequenceNumber,
+                        sequenceResult,
+                        isSequenceSuccess,
+                        isEndOfSequence: modules.length == sequenceNumber
+                    })
+
+                    if(isEndOfSequence || !isSequenceSuccess) return callbackResult
+                    return false
+                }
             }
 
-            for(let module of modules)
-                await Sequencer(module)
+            for(let module of modules){
+                let sequencerResult = await Sequencer(module)
+                if(sequencerResult) return sequencerResult
+            }
+
+            if(modules.length == 0){
+                return await callback({
+                    sequenceNumber: 0,
+                    sequenceResult: undefined,
+                    isSequenceSuccess: true,
+                    isEndOfSequence: true
+                })
+            }
         })()
     },
 
@@ -37,7 +53,7 @@ module.exports = {
         return (data)=>{
             return new Promise((resolve, reject)=>{
                 if(typeof(callback) == 'function')
-                    callback({data, resolve, reject})
+                    return callback({data, resolve, reject})
             })
         }
     }

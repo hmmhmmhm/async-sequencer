@@ -16,7 +16,7 @@ declare module 'async-sequencer' {
                 resolve: (result?: any) => void
                 reject: (result?: any) => void
                 data
-            }) => void ) => void
+            }) => void ) => Promise<any> | void
     }
 
     export = main
