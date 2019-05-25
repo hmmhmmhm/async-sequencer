@@ -21,11 +21,12 @@ module.exports = {
                 }
 
                 if(typeof(callback) == 'function') {
+                    const isEndOfSequence = modules.length == sequenceNumber
                     let callbackResult = await callback({
                         sequenceNumber,
                         sequenceResult,
                         isSequenceSuccess,
-                        isEndOfSequence: modules.length == sequenceNumber
+                        isEndOfSequence
                     })
 
                     if(isEndOfSequence || !isSequenceSuccess) return callbackResult
