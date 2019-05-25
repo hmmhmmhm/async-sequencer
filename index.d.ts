@@ -9,7 +9,7 @@ declare module 'async-sequencer' {
                 isSequenceSuccess: boolean
                 isEndOfSequence: boolean
             }) => void,
-            data?) => void
+            data?) => Promise<any>
 
         Sequence: (
             callback: (option: {

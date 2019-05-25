@@ -3,7 +3,7 @@ module.exports = {
 
         if(!Array.isArray(modules) || typeof data != 'object') throw new Error('Wrong Parameter')
 
-        ;(async ()=>{
+        return (async ()=>{
             let sequenceNumber = 0
             async function Sequencer(module){
 
