@@ -53,8 +53,14 @@ module.exports = {
     Sequence: (callback)=>{
         return (data)=>{
             return new Promise((resolve, reject)=>{
-                if(typeof(callback) == 'function')
-                    return callback({data, resolve, reject})
+                if(typeof(callback) == 'function'){
+                    try{
+                        return callback({data, resolve, reject})
+                    }catch(e){
+                        reject()
+                        throw e
+                    }
+                }
             })
         }
     }
