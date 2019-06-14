@@ -17,6 +17,7 @@ module.exports = {
                         sequenceResult = await module(data)
                     }
                 }catch(e){
+                    console.error(e)
                     isSequenceSuccess = false
                 }
 
@@ -57,6 +58,7 @@ module.exports = {
                     try{
                         return callback({data, resolve, reject})
                     }catch(e){
+                        console.error(e)
                         reject()
                         throw e
                     }
